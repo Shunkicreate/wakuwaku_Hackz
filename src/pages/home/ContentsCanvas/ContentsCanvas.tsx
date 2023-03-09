@@ -91,11 +91,10 @@ const ContentsCanvas = (): JSX.Element => {
   const runner = Runner.create();
   Runner.run(runner, engine);
 
-  console.log("hello");
   return (
     <CanvasArea>
       <BackGroundMessage>
-        ランダムで1〜{MAX_QUANTITY}個の四角を落としているわよ
+        ランダムで1〜{MAX_QUANTITY}個のブロックを落としているわよ
       </BackGroundMessage>
     </CanvasArea>
   );
