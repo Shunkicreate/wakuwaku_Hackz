@@ -64,7 +64,7 @@ const ContentsCanvas = (): JSX.Element => {
     }
   );
 
-  let addContentes = [ground, leftWall, rightWall];
+  let addContentes:Matter.Body[] = [ground, leftWall, rightWall];
 
   const MAX_QUANTITY = 100;
   const quantity = Math.floor(Math.random() * MAX_QUANTITY - 1) + 1;
@@ -76,9 +76,12 @@ const ContentsCanvas = (): JSX.Element => {
     addContentes.push(
       Bodies.rectangle(
         Math.random() * (window.innerWidth - BOX_WIDTH - BOX_WIDTH) + BOX_WIDTH,
-        Math.random() * 200,
+        (Math.random() * 200) - 500,
         BOX_WIDTH,
-        BOX_HEIGHT
+        BOX_HEIGHT,
+        {
+          angle: Math.random()*45,
+        }
       )
     );
   }
