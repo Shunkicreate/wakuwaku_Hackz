@@ -48,7 +48,6 @@ merge feature1
 
 checkout main
 merge develop
-
 ```
 
 
