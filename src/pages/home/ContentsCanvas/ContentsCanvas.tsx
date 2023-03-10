@@ -93,18 +93,12 @@ const ContentsCanvas = (): JSX.Element => {
 
   return (
     <CanvasArea>
-      <BackGroundMessage>
-        ランダムで1〜{MAX_QUANTITY}個のブロックを落としているわよ
-      </BackGroundMessage>
+      ランダムで1〜{MAX_QUANTITY}個のブロックを落としているわよ
     </CanvasArea>
   );
 };
 
-const CanvasArea = styled.div`
-  position: fixed;
-`;
-
-const BackGroundMessage = styled.h2`
+const CanvasArea = styled.h2`
   position: absolute;
   color: #24292f;
   white-space: nowrap;
