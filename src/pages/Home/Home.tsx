@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import Header from "../../component/header/Header";
 import ContentsCanvas from "./ContentsCanvas/ContentsCanvas";
+import BackGround from "../../component/backGround/BackGround";
 //フォルダ名タイポしてた
 const Home = (): JSX.Element => {
   const disallowScrolling = (event: Event) => {
@@ -14,10 +15,12 @@ const Home = (): JSX.Element => {
 
   return (
     <HomePage>
-      <HeaderOuter>
-        <Header />
-      </HeaderOuter>
-      <ContentsCanvas />
+      <BackGround>
+        <HeaderOuter>
+          <Header />
+        </HeaderOuter>
+        <ContentsCanvas />
+      </BackGround>
     </HomePage>
   );
 };

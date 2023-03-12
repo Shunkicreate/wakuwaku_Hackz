@@ -47,6 +47,7 @@
     ]
   },
   "devDependencies": {
-    "@types/matter-js": "^0.18.2"
+    "@types/matter-js": "^0.18.2",
+    "@types/styled-components": "^5.1.26"
   }
 }
