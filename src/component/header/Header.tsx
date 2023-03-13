@@ -12,7 +12,6 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useAuth } from "../../hooks/useAuth";
-import { useCastom } from "../../hooks/useCastom";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -25,7 +24,6 @@ const Header = (): JSX.Element => {
     null
   );
   const { isAuthenticated, userData, email, login } = useAuth();
-  const { stateA, increment } = useCastom();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
