@@ -5,7 +5,6 @@ import ContentElement from "./ContentElement";
 const COntentsCanvas = (): JSX.Element => {
     let conetntDistribution:position2D[] = []
 
-    const areaDemention = window.innerWidth * window.innerHeight;
     const DIAMETER = '10em';
     //em to px ----------------
     const fontSize = getComputedStyle(document.documentElement).fontSize;
