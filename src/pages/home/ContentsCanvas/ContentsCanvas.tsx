@@ -1,109 +1,65 @@
-import styled from "@emotion/styled";
-import Matter from "matter-js";
+import { position2D } from "../../../@types/global";
+import Repeat from "../../../function/Repeat";
+import ContentElement from "./ContentElement";
 
-const ContentsCanvas = (): JSX.Element => {
-  const Engine = Matter.Engine,
-    Render = Matter.Render,
-    Runner = Matter.Runner,
-    Bodies = Matter.Bodies,
-    Composite = Matter.Composite;
+const COntentsCanvas = (): JSX.Element => {
+    let conetntDistribution:position2D[] = []
 
-  const engine = Engine.create();
+    const DIAMETER = '10em';
+    //em to px ----------------
+    const fontSize = getComputedStyle(document.documentElement).fontSize;
+    const diameterPx = parseInt(DIAMETER) * parseFloat(fontSize);
+    //-------------------------
+    
+    const MAX_QUANTITY = 10;
 
-  const render = Render.create({
-    element: document.body,
-    engine: engine,
-    options: {
-      width: window.innerWidth,
-      height: window.innerHeight,
-      background: "FFF",
-      wireframeBackground: "#FFF",
-      wireframes: false,
-      showAngleIndicator: false,
-    },
-  });
+    const quantity = Math.floor(Math.random() * MAX_QUANTITY - 3) + 1;
+    
+    const positionHandler = (): position2D => {
 
-  const ground = Bodies.rectangle(
-    window.innerWidth / 2,
-    window.innerHeight,
-    window.innerWidth,
-    60,
-    {
-      isStatic: true,
-      render: {
-        fillStyle: "#24292f",
-      },
-    }
-  );
+        const maxTop = 100;
+        const maxBottom = window.innerHeight - 100 - diameterPx;
+        const maxLeft = 100;
+        const maxRight = window.innerWidth - 100 - diameterPx;
 
-  const leftWall = Bodies.rectangle(
-    -1,
-    window.innerHeight / 2,
-    2,
-    window.innerHeight,
-    {
-      isStatic: true,
-      friction: 0,
-      render: {
-        fillStyle: "#24292f",
-      },
-    }
-  );
+        const checkBooking = (position:position2D):boolean => {
 
-  const rightWall = Bodies.rectangle(
-    window.innerWidth + 1,
-    window.innerHeight / 2,
-    2,
-    window.innerHeight,
-    {
-      isStatic: true,
-      friction: 0,
-      render: {
-        fillStyle: "#24292f",
-      },
-    }
-  );
-
-  let addContentes:Matter.Body[] = [ground, leftWall, rightWall];
-
-  const MAX_QUANTITY = 100;
-  const quantity = Math.floor(Math.random() * MAX_QUANTITY - 1) + 1;
-
-  const BOX_WIDTH = 80;
-  const BOX_HEIGHT = BOX_WIDTH;
-
-  for (let i = 0; i < quantity; i++) {
-    addContentes.push(
-      Bodies.rectangle(
-        Math.random() * (window.innerWidth - BOX_WIDTH - BOX_WIDTH) + BOX_WIDTH,
-        (Math.random() * 200) - 500,
-        BOX_WIDTH,
-        BOX_HEIGHT,
-        {
-          angle: Math.random()*45,
+            for (let i = 0; i < conetntDistribution.length; i++) {
+                const betweenTwoPoints = Math.sqrt((position.x - conetntDistribution[i].x ) ** 2 + (position.y - conetntDistribution[i].y ) ** 2);
+                if (betweenTwoPoints - 10 < diameterPx) {
+                    return true
+                }
+            }
+            return false
         }
-      )
-    );
-  }
+        
+        let position = { x: 0, y: 0 }
+        
+        while (1) {
+            const x = Math.random() * (maxRight - maxLeft) + maxLeft;
+            const y = Math.random() * (maxBottom - maxTop) + maxTop;
+            position = { x: x, y: y }
+            if (!checkBooking(position)) {
+                break
+            }
+        }
 
-  Composite.add(engine.world, addContentes);
-  Render.run(render);
-  const runner = Runner.create();
-  Runner.run(runner, engine);
-
-  return (
-    <CanvasArea>
-      ランダムで1〜{MAX_QUANTITY}個のブロックを落としているわよ
-    </CanvasArea>
+        conetntDistribution.push(position)
+        return position
+    }
+    return (
+        <>
+          <Repeat numTimes={quantity}>
+                {(index: number) => <div key={index}>
+                    <ContentElement
+                        diameter = {DIAMETER}
+                        position = {positionHandler()}
+                    />
+                    </div>
+                }
+            </Repeat>
+    </>
   );
-};
+}
 
-const CanvasArea = styled.h2`
-  position: absolute;
-  color: #24292f;
-  white-space: nowrap;
-  top: ${window.innerHeight / 2}px;
-  left: 100px;
-`;
-
-export default ContentsCanvas;
+export default COntentsCanvas;
