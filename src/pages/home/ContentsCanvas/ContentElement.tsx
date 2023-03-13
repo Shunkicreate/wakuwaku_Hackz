@@ -20,7 +20,8 @@ const ContentsCanvas: FC<Props> = ({ diameter, position, delay }): JSX.Element =
                     delay = {delay}
                     >
                     <ContentInner>
-                    <ImageBox src={"https://www.studio-alice.co.jp/shortcut/halfbd_s/column/img/detail40/img01.jpg"}
+                    <ImageBox src={"https://ca.slack-edge.com/T02AEC8RD-U01MWGUL5SS-02b51b855f69-512"}
+                    // <ImageBox src={"https://www.studio-alice.co.jp/shortcut/halfbd_s/column/img/detail40/img01.jpg"}
                         diameter = {diameter}
                     />
             </ContentInner>
@@ -69,6 +70,10 @@ const ImageBox = styled.img<{
     height:${({ diameter }) => diameter };
     width:${({ diameter }) => diameter };
     object-fit: cover;
+`
+
+const StyleButton = styled.button`
+    
 `
 
 export default ContentsCanvas;

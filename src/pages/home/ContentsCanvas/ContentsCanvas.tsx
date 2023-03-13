@@ -11,9 +11,10 @@ const ContentsCanvas = (): JSX.Element => {
     const diameterPx = parseInt(DIAMETER) * parseFloat(fontSize);
     //-------------------------
     
-    const MAX_QUANTITY = 10;
+    // const MAX_QUANTITY = 10;
 
-    const quantity = Math.floor(Math.random() * MAX_QUANTITY - 3) + 1;
+    // const quantity = Math.floor(Math.random() * MAX_QUANTITY - 3) + 1;
+    const quantity = 15;
     
     const positionHandler = (): position2D => {
 
