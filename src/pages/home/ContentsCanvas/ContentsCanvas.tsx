@@ -2,7 +2,7 @@ import { position2D } from "../../../@types/global";
 import Repeat from "../../../function/Repeat";
 import ContentElement from "./ContentElement";
 
-const COntentsCanvas = (): JSX.Element => {
+const ContentsCanvas = (): JSX.Element => {
     let conetntDistribution:position2D[] = []
 
     const DIAMETER = '10em';
@@ -62,4 +62,4 @@ const COntentsCanvas = (): JSX.Element => {
   );
 }
 
-export default COntentsCanvas;
+export default ContentsCanvas;
