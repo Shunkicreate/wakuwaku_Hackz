@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import Header from "../../component/header/Header";
-import COntentsCanvas from "./ContentsCanvas/ContentsCanvas";
+import ContentsCanvas from "./ContentsCanvas/ContentsCanvas";
 
 const Home = (): JSX.Element => {
 
@@ -9,7 +9,7 @@ const Home = (): JSX.Element => {
           <HeaderOuter>
             <Header />
         </HeaderOuter>
-        <COntentsCanvas/>
+        <ContentsCanvas/>
         </NewCanvasPage>
       );
     };
