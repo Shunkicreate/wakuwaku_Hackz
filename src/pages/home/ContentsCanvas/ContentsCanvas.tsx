@@ -54,6 +54,7 @@ const ContentsCanvas = (): JSX.Element => {
                     <ContentElement
                         diameter = {DIAMETER}
                         position = {positionHandler()}
+                        delay = {Math.random()}
                     />
                     </div>
                 }
