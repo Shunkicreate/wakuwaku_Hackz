@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, createMuiTheme, styled, TextField } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import react, { useRef, useState } from "react"
+import FaceDetector from "../../function/Faceexpression"
 
 const PostContent = (): JSX.Element => {
   const [check, setCheck] = useState<boolean>(true);
@@ -9,8 +10,8 @@ const PostContent = (): JSX.Element => {
   const [comment, setComment] = useState<string>('');
   const [profileImage, setProfileImage] = useState<string>('default-profile.png');
 
-  const [happy, setHappy] = useState<number>();
-  // const [happy, setHappy] = useState<number>(97.0);
+  const [happy, setHappy] = useState<string>("----");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const theme1 = createMuiTheme({
     palette: {
@@ -118,13 +119,14 @@ const PostContent = (): JSX.Element => {
           gridColumn: "2/3",
           gridRow: "3/4",
         }}>
-        <SelectPhoto></SelectPhoto>
+        {/* <SelectPhoto></SelectPhoto> */}
+        <FaceDetector happy={happy} setHappy={setHappy}></FaceDetector>
       </div>
       <div style={{ gridColumn: "3/4", gridRow: "3/4", }}>
         <div style={{ margin: "2%" }}>
           {/* 幸せ度表示 */}
           <div style={{ fontSize: "5vh", margin: "3vh", marginBottom: "3vh", marginTop: "7vh", gridColumn: "2/3", gridRow: "3/4", }}>
-            Happiness {happy === 0 ? happy.toFixed(1) : "----"}
+            Happiness {happy}
           </div>
           <ThemeProvider theme={theme1}>
 
