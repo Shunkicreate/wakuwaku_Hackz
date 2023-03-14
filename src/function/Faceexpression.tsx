@@ -4,6 +4,9 @@ import * as faceapi from 'face-api.js';
 const FaceDetector = ():JSX.Element => {
     const [expressions, setExpressions] = useState<Record<string, number>>({});
     // モデルの読み込みを待つ
+
+    const [profileImage, setProfileImage] = useState<string>('default-profile.png');//ファイル名格納
+
     const detectExpressions = async (image: HTMLImageElement) => {
       try {
         const MODEL_URL = `${process.env.PUBLIC_URL}/models/`
@@ -62,6 +65,47 @@ const FaceDetector = ():JSX.Element => {
       console.log(imgElement)
       detectExpressions(imgElement)
     };
+
+
+
+    
+    const SelectPhoto = () => {
+      if (profileImage == 'default-profile.png') {
+        return (
+          <label
+            style={{
+              display: "block",
+              float: "left",
+              width: "27vw",
+              height: "27vw",
+              color: "#999999",
+              marginLeft: "6vw",
+              marginTop: "5vh",
+              backgroundColor: "#DDDDDD",
+            }}>
+            <input type="file" style={{ display: "none", }} onChange={onFileInputChange} />
+          </label>
+        )
+      }
+      else {
+        return (
+          <div>
+            <img
+              src={profileImage}
+              style={{
+                width: "27vw",
+                height: "27vw",
+                marginLeft: "6vw",
+                marginTop: "5vh",
+                objectFit: "cover"
+              }}
+            />
+          </div>
+        )
+      }
+    }
+
+
   return (
     <div>
       <label htmlFor="imageUpload">Select an image:</label>
@@ -70,5 +114,7 @@ const FaceDetector = ():JSX.Element => {
     </div>
     
   );
+
+
 }
 export default FaceDetector;
