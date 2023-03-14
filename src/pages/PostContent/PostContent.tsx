@@ -1,8 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { Button, createTheme, styled, TextField } from "@mui/material";
+import { Button, createTheme, TextField } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import react, { useRef, useState } from "react"
 import FaceDetector from "../../function/Faceexpression"
+import LoginInfoAtom from "../../globalState/atoms/LoginInfo";
+import { useRecoilValue } from "recoil";
+import { clientPost } from '../../@types/global';
+import Header from '../../component/header/Header';
+import styled from '@emotion/styled';
 
 const PostContent = (): JSX.Element => {
   const [check, setCheck] = useState<boolean>(true);
@@ -12,6 +17,7 @@ const PostContent = (): JSX.Element => {
 
   const [happy, setHappy] = useState<string>("----");
   const [loading, setLoading] = useState<boolean>(false);
+  const LoginInfo = useRecoilValue(LoginInfoAtom)
 
   const theme1 = createTheme({
     palette: {
@@ -29,7 +35,7 @@ const PostContent = (): JSX.Element => {
   });
 
   const checkFilled = (value: string) => {
-    if (value == '') {
+    if (value === '') {
       setCheck(true);
     }
     else {
@@ -42,7 +48,7 @@ const PostContent = (): JSX.Element => {
   const navigate = useNavigate();
 
   const SelectPhoto = () => {
-    if (profileImage == 'default-profile.png') {
+    if (profileImage === 'default-profile.png') {
       return (
         <label
           style={{
@@ -64,6 +70,7 @@ const PostContent = (): JSX.Element => {
         <div>
           <img
             src={profileImage}
+            alt="画像をPost"
             style={{
               width: "27vw",
               height: "27vw",
@@ -85,7 +92,31 @@ const PostContent = (): JSX.Element => {
     // オブジェクトURLを生成し、useState()を更新
     setProfileImage(window.URL.createObjectURL(fileObject));
   };
-
+const onClickAddScreen = async () => {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  if(!LoginInfo.uid){
+    alert("ログインしてください！")
+    return
+  }
+  const raw:clientPost = {
+    // "img_url": profileImage,
+    "title": tittle,
+    "description": comment,
+    "uid": LoginInfo.uid,
+    "alt": "alttttttt",
+    "happiness_rate": Number(happy)
+  };
+  const requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: JSON.stringify(raw),
+  };
+  fetch("https://wakuwaku-backend.azurewebsites.net/create-post", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+}
   return (
     <div style={{
       height: "100%",
@@ -94,6 +125,7 @@ const PostContent = (): JSX.Element => {
       gridTemplateRows: "10vh 10vh 70vh 10vh",
       backgroundColor: "rgb(150,235,235)"
     }}>
+      <HeaderOuter><Header></Header></HeaderOuter>
       <div style={{
         gridColumn: "2/4",
         gridRow: "2/4",
@@ -134,7 +166,7 @@ const PostContent = (): JSX.Element => {
             <div>
               <TextField
                 id="outlined-basic"
-                label="title" variant="outlined"
+                label="title"
                 style={{
                   width: "40vw",
                   marginBottom: "4%"
@@ -151,7 +183,6 @@ const PostContent = (): JSX.Element => {
                 size="small"
                 id="outlined-basic"
                 label="comment"
-                variant="outlined"
                 multiline
                 minRows="6"
                 style={{
@@ -167,12 +198,18 @@ const PostContent = (): JSX.Element => {
         {/* 投稿ボタン */}
         <div style={{ textAlign: "right", width: "40vw" }}>
           <ThemeProvider theme={theme2}>
-            <Button variant="contained" size={"large"} disabled={check} style={{ flexGrow: "1" }} onClick={() => { navigate(`/content/${tittle}`) }}>post</Button>
+            <Button size={"large"} disabled={check} style={{ flexGrow: "1" }} onClick={onClickAddScreen} >post</Button>
           </ThemeProvider>
         </div>
       </div>
     </div>
   );
 };
+
+const HeaderOuter = styled.div`
+  position: absolute;
+  width: ${window.innerWidth}px;
+  top: 0;
+`;
 
 export default PostContent;
