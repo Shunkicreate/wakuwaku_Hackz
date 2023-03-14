@@ -9,7 +9,6 @@ const PostContent = (): JSX.Element => {
   const [check, setCheck] = useState<boolean>(true);
   const [title, setTitle] = useState<string>('');
   const [comment, setComment] = useState<string>('');
-  const [profileImage, setProfileImage] = useState<string>('default-profile.png');
 
   const [happy, setHappy] = useState<string>("----");
   const [color, setColor] = useState<string>("#999999");
@@ -48,17 +47,6 @@ const PostContent = (): JSX.Element => {
   const inputFileRef = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
-
-
-
-  const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return;
-
-    // React.ChangeEvent<HTMLInputElement>よりファイルを取得
-    const fileObject = e.target.files[0];
-    // オブジェクトURLを生成し、useState()を更新
-    setProfileImage(window.URL.createObjectURL(fileObject));
-  };
 
   return (
     <div style={{
