@@ -1,17 +1,17 @@
 import { useNavigate } from 'react-router-dom';
-import { Button, createTheme, styled, TextField } from "@mui/material";
+import { Button, CircularProgress, createTheme, Stack, styled, TextField } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
-import react, { useRef, useState } from "react"
+import react, { useRef, useState, useEffect } from "react"
 import FaceDetector from "../../function/Faceexpression"
 
 const PostContent = (): JSX.Element => {
   const [check, setCheck] = useState<boolean>(true);
-  const [tittle, setTittle] = useState<string>('');
+  const [title, setTitle] = useState<string>('');
   const [comment, setComment] = useState<string>('');
   const [profileImage, setProfileImage] = useState<string>('default-profile.png');
 
   const [happy, setHappy] = useState<string>("----");
-  const [loading, setLoading] = useState<boolean>(false);
+  const [color, setColor] = useState<string>("#999999");
 
   const theme1 = createTheme({
     palette: {
@@ -28,8 +28,15 @@ const PostContent = (): JSX.Element => {
     }
   });
 
+  useEffect(
+    () => {
+        checkFilled(title);
+    },
+    [ happy ]
+  );
+
   const checkFilled = (value: string) => {
-    if (value == '') {
+    if (value == ''||happy=="Happyじゃありませんでした"||happy=="----"||happy=="エラーが発生しました"||happy=="loading") {
       setCheck(true);
     }
     else {
@@ -120,13 +127,18 @@ const PostContent = (): JSX.Element => {
           gridRow: "3/4",
         }}>
         {/* <SelectPhoto></SelectPhoto> */}
-        <FaceDetector happy={happy} setHappy={setHappy}></FaceDetector>
+        <FaceDetector happy={happy} setHappy={setHappy} color={color} setColor={setColor}></FaceDetector>
       </div>
-      <div style={{ gridColumn: "3/4", gridRow: "3/4", }}>
+      <div style={{ gridColumn: "2/4", gridRow: "3/4", margin: "0 auto", paddingTop: "20vh" }}>
+        <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row">
+          <CircularProgress size={100} color="inherit" style={{ display: happy === "loading" ? "" : "none" }}></CircularProgress>
+        </Stack>
+      </div>
+      <div style={{ gridColumn: "3/4", gridRow: "2/4", textAlign: "center" }}>
         <div style={{ margin: "2%" }}>
           {/* 幸せ度表示 */}
-          <div style={{ fontSize: "5vh", margin: "3vh", marginBottom: "3vh", marginTop: "7vh", gridColumn: "2/3", gridRow: "3/4", }}>
-            Happiness {happy}
+          <div style={{ fontSize: "5vh", margin: "3vh", marginBottom: "3vh", marginTop: "15vh", gridColumn: "2/3", gridRow: "3/4", color: color}}>
+            {happy}
           </div>
           <ThemeProvider theme={theme1}>
 
@@ -140,7 +152,7 @@ const PostContent = (): JSX.Element => {
                   marginBottom: "4%"
                 }}
                 onChange={(event) => {
-                  setTittle(event.target.value);
+                  setTitle(event.target.value);
                   checkFilled(event.target.value);
                 }}
               />
@@ -167,7 +179,7 @@ const PostContent = (): JSX.Element => {
         {/* 投稿ボタン */}
         <div style={{ textAlign: "right", width: "40vw" }}>
           <ThemeProvider theme={theme2}>
-            <Button variant="contained" size={"large"} disabled={check} style={{ flexGrow: "1" }} onClick={() => { navigate(`/content/${tittle}`) }}>post</Button>
+            <Button variant="contained" size={"large"} disabled={check} style={{ flexGrow: "1" }} onClick={() => { navigate(`/content/${title}`) }}>post</Button>
           </ThemeProvider>
         </div>
       </div>
