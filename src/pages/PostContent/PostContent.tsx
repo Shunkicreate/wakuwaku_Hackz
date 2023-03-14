@@ -31,13 +31,13 @@ const PostContent = (): JSX.Element => {
 
   useEffect(
     () => {
-        checkFilled(title);
+      checkFilled(title);
     },
-    [ happy ]
+    [happy]
   );
 
   const checkFilled = (value: string) => {
-    if (value == ''||happy=="Happyじゃありませんでした"||happy=="----"||happy=="エラーが発生しました"||happy=="loading") {
+    if (value == '' || happy == "Happyじゃありませんでした" || happy == "----" || happy == "エラーが発生しました" || happy == "loading") {
       setCheck(true);
     }
     else {
@@ -49,41 +49,7 @@ const PostContent = (): JSX.Element => {
 
   const navigate = useNavigate();
 
-  const SelectPhoto = () => {
-    if (profileImage == 'default-profile.png') {
-      return (
-        <label
-          style={{
-            display: "block",
-            float: "left",
-            width: "27vw",
-            height: "27vw",
-            color: "#999999",
-            marginLeft: "6vw",
-            marginTop: "5vh",
-            backgroundColor: "#DDDDDD",
-          }}>
-          <input type="file" style={{ display: "none", }} onChange={onFileInputChange} />
-        </label>
-      )
-    }
-    else {
-      return (
-        <div>
-          <img
-            src={profileImage}
-            style={{
-              width: "27vw",
-              height: "27vw",
-              marginLeft: "6vw",
-              marginTop: "5vh",
-              objectFit: "cover"
-            }}
-          />
-        </div>
-      )
-    }
-  }
+
 
   const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
@@ -103,7 +69,7 @@ const PostContent = (): JSX.Element => {
       backgroundColor: "rgb(150,235,235)"
     }}>
       <div style={{
-      gridColumn: "1/5",
+        gridColumn: "1/5",
       }}>
         <Header></Header>
       </div>
@@ -146,7 +112,7 @@ const PostContent = (): JSX.Element => {
       <div style={{ gridColumn: "3/4", gridRow: "3/5", textAlign: "center" }}>
         <div style={{ margin: "2%" }}>
           {/* 幸せ度表示 */}
-          <div style={{ fontSize: "5vh", margin: "3vh", marginBottom: "3vh", marginTop: "13vh", gridColumn: "2/3", gridRow: "3/4", color: color}}>
+          <div style={{ fontSize: "5vh", margin: "3vh", marginBottom: "3vh", marginTop: "13vh", gridColumn: "2/3", gridRow: "3/4", color: color }}>
             {happy}
           </div>
           <ThemeProvider theme={theme1}>
