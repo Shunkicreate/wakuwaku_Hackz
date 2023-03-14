@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import Header from "../../component/header/Header";
 import { Button, CircularProgress, createTheme, Stack, styled, TextField } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import react, { useRef, useState, useEffect } from "react"
@@ -98,20 +99,27 @@ const PostContent = (): JSX.Element => {
       height: "100%",
       display: "grid",
       gridTemplateColumns: "10vw 35vw 45vw 10vw",
-      gridTemplateRows: "10vh 10vh 70vh 10vh",
+      gridTemplateRows: "15vh 5vh 5vh 70vh 5vh",
       backgroundColor: "rgb(150,235,235)"
     }}>
       <div style={{
+      gridColumn: "1/5",
+      }}>
+        <Header></Header>
+      </div>
+      <div style={{
         gridColumn: "2/4",
-        gridRow: "2/4",
-        margin: "-5vh",
+        gridRow: "3/5",
+        margin: "-2vh",
+        marginLeft: "-4vh",
+        marginRight: "-4vh",
         backgroundColor: "rgba(255,255,255,0.8)"
       }}>
 
       </div>
       <div style={{
         gridColumn: "2/4",
-        gridRow: "2/3",
+        gridRow: "3/4",
         marginTop: "auto",
         textAlign: "left",
         fontSize: "30px",
@@ -124,17 +132,17 @@ const PostContent = (): JSX.Element => {
       <div
         style={{
           gridColumn: "2/3",
-          gridRow: "3/4",
+          gridRow: "4/5",
         }}>
         {/* <SelectPhoto></SelectPhoto> */}
         <FaceDetector happy={happy} setHappy={setHappy} color={color} setColor={setColor}></FaceDetector>
       </div>
-      <div style={{ gridColumn: "2/4", gridRow: "3/4", margin: "0 auto", paddingTop: "20vh" }}>
+      <div style={{ gridColumn: "2/4", gridRow: "4/5", margin: "0 auto", paddingTop: "20vh" }}>
         <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row">
           <CircularProgress size={100} color="inherit" style={{ display: happy === "loading" ? "" : "none" }}></CircularProgress>
         </Stack>
       </div>
-      <div style={{ gridColumn: "3/4", gridRow: "2/4", textAlign: "center" }}>
+      <div style={{ gridColumn: "3/4", gridRow: "3/5", textAlign: "center" }}>
         <div style={{ margin: "2%" }}>
           {/* 幸せ度表示 */}
           <div style={{ fontSize: "5vh", margin: "3vh", marginBottom: "3vh", marginTop: "15vh", gridColumn: "2/3", gridRow: "3/4", color: color}}>
