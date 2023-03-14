@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as faceapi from 'face-api.js';
+// import photo from "../function/S__26435590.jpg";
 
-const FaceDetector = ():JSX.Element => {
+const FaceDetector = ({happy,setHappy}:{happy:string, setHappy:React.Dispatch<React.SetStateAction<string>>}):JSX.Element => {
     const [expressions, setExpressions] = useState<Record<string, number>>({});
     // モデルの読み込みを待つ
 
@@ -36,13 +37,13 @@ const FaceDetector = ():JSX.Element => {
           console.log(expression)
           console.log(expressionscore)
           console.log(happyscore)
-          
           if(expression === "happy"){
             console.log("Happyですね");
-
+            setHappy(happyscore.toFixed(1));
           }
           else{
             console.log("Happyじゃないですね");
+            setHappy("Happyじゃないですね");
           }
         }
       } catch (error) {
@@ -62,6 +63,8 @@ const FaceDetector = ():JSX.Element => {
         }, false);
         reader.readAsDataURL(file);
       }
+      if(file!=undefined)
+        setProfileImage(window.URL.createObjectURL(file));
       console.log(imgElement)
       detectExpressions(imgElement)
     };
@@ -81,9 +84,11 @@ const FaceDetector = ():JSX.Element => {
               color: "#999999",
               marginLeft: "6vw",
               marginTop: "5vh",
-              backgroundColor: "#DDDDDD",
+              backgroundColor: "#DDDDDD"
+              // backgroundImage: `url(${photo})`,
             }}>
-            <input type="file" style={{ display: "none", }} onChange={onFileInputChange} />
+            {/* <input type="file" style={{ display: "none", }} onChange={onFileInputChange} /> */}
+            <input style={{ display: "none", }} type="file" id="imageUpload" accept="image/*" onChange={(event) =>handleImageChange(event)} />
           </label>
         )
       }
@@ -108,9 +113,9 @@ const FaceDetector = ():JSX.Element => {
 
   return (
     <div>
-      <label htmlFor="imageUpload">Select an image:</label>
-      <input type="file" id="imageUpload" accept="image/*" onChange={(event) =>handleImageChange(event)} />
-      
+      {/* <label htmlFor="imageUpload">Select an image:</label>
+      <input type="file" id="imageUpload" accept="image/*" onChange={(event) =>handleImageChange(event)} /> */}
+      <SelectPhoto></SelectPhoto>
     </div>
     
   );
