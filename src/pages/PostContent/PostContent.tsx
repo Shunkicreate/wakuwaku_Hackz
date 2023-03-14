@@ -4,11 +4,10 @@ import { ThemeProvider } from "@emotion/react";
 import react, { useRef, useState } from "react"
 
 const PostContent = (): JSX.Element => {
-
-  const [check, setCheck] = useState(true);
-  const [tittle, setTittle] = useState('');
-  const [comment, setComment] = useState('');
-  const [profileImage, setProfileImage] = useState('default-profile.png');
+  const [check, setCheck] = useState<boolean>(true);
+  const [tittle, setTittle] = useState<string>('');
+  const [comment, setComment] = useState<string>('');
+  const [profileImage, setProfileImage] = useState<string>('default-profile.png');
 
   const [happy, setHappy] = useState<number>();
   // const [happy, setHappy] = useState<number>(97.0);
