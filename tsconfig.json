@@ -22,5 +22,10 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "paths": {
+    "~/*": ["./*"],
+    "@/*": ["./*"],
+    "#app": ["./node_modules/@nuxt/bridge/dist/runtime/index.d.mts"]
+  },
 }
