@@ -126,7 +126,6 @@ const PostContent = (): JSX.Element => {
                 size="small"
                 id="outlined-basic"
                 label="comment"
-                variant="outlined"
                 multiline
                 minRows="6"
                 style={{
