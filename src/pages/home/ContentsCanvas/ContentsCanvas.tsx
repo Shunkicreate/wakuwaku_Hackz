@@ -10,11 +10,8 @@ const ContentsCanvas = (): JSX.Element => {
     const fontSize = getComputedStyle(document.documentElement).fontSize;
     const diameterPx = parseInt(DIAMETER) * parseFloat(fontSize);
     //-------------------------
-    
-    const MAX_QUANTITY = 10;
 
-    // const quantity = Math.floor(Math.random() * MAX_QUANTITY - 3) + 1;
-    const quantity = 2;
+    const quantity = Math.floor((window.innerWidth * window.innerHeight) / (diameterPx * diameterPx) / 4);
     
     const positionHandler = (): position2D => {
 
@@ -55,6 +52,7 @@ const ContentsCanvas = (): JSX.Element => {
                     <ContentElement
                         diameter = {DIAMETER}
                         position = {positionHandler()}
+                        delay = {Math.random()}
                     />
                     </div>
                 }

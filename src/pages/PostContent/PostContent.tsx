@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Button, createMuiTheme, styled, TextField } from "@mui/material";
+import { Button, createTheme, styled, TextField } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import react, { useRef, useState } from "react"
 import FaceDetector from "../../function/Faceexpression"
@@ -13,14 +13,14 @@ const PostContent = (): JSX.Element => {
   const [happy, setHappy] = useState<string>("----");
   const [loading, setLoading] = useState<boolean>(false);
 
-  const theme1 = createMuiTheme({
+  const theme1 = createTheme({
     palette: {
       primary: {
         main: "#95a5a6"
       },
     },
   });
-  const theme2 = createMuiTheme({
+  const theme2 = createTheme({
     palette: {
       primary: {
         main: "#7f8c8d"
