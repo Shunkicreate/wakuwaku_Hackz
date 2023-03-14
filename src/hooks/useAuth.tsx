@@ -1,6 +1,6 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider, OAuthCredential } from "firebase/auth";
 import { useState } from "react";
-import { authResult, LoginInfoAtomType } from "../@types/global";
+import { authResult, clientUser, LoginInfoAtomType } from "../@types/global";
 import { auth } from "../firebase"
 import LoginInfoAtom from "../globalState/atoms/LoginInfo";
 import AddLoginInfoSelector from "../globalState/selectors/AddLoginInfoSelector";
@@ -39,6 +39,23 @@ export const useAuth = () => {
                 if (result.user.email) {
                     setEmail(result.user.email)
                 }
+
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                const raw: clientUser = {
+                    uid: result.user.uid,
+                    user_name: result.user.displayName ? result.user.displayName : "わくわくさん",
+                    profile_message: "wakuwakuwakuwaku"
+                };
+                const requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: JSON.stringify(raw),
+                };
+                fetch("https://wakuwaku-backend.azurewebsites.net/create-user", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
                 
                 return authedUserData
             }).catch((error) => {
