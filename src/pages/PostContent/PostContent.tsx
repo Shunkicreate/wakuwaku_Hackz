@@ -99,7 +99,7 @@ const PostContent = (): JSX.Element => {
       height: "100%",
       display: "grid",
       gridTemplateColumns: "10vw 35vw 45vw 10vw",
-      gridTemplateRows: "15vh 5vh 5vh 70vh 5vh",
+      gridTemplateRows: "10vh 8vh 5vh 70vh 7vh",
       backgroundColor: "rgb(150,235,235)"
     }}>
       <div style={{
@@ -133,6 +133,7 @@ const PostContent = (): JSX.Element => {
         style={{
           gridColumn: "2/3",
           gridRow: "4/5",
+          marginTop: "7vh"
         }}>
         {/* <SelectPhoto></SelectPhoto> */}
         <FaceDetector happy={happy} setHappy={setHappy} color={color} setColor={setColor}></FaceDetector>
@@ -145,7 +146,7 @@ const PostContent = (): JSX.Element => {
       <div style={{ gridColumn: "3/4", gridRow: "3/5", textAlign: "center" }}>
         <div style={{ margin: "2%" }}>
           {/* 幸せ度表示 */}
-          <div style={{ fontSize: "5vh", margin: "3vh", marginBottom: "3vh", marginTop: "15vh", gridColumn: "2/3", gridRow: "3/4", color: color}}>
+          <div style={{ fontSize: "5vh", margin: "3vh", marginBottom: "3vh", marginTop: "13vh", gridColumn: "2/3", gridRow: "3/4", color: color}}>
             {happy}
           </div>
           <ThemeProvider theme={theme1}>
