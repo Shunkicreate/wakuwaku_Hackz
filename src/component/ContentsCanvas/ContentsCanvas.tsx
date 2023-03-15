@@ -1,17 +1,29 @@
-import { position2D } from "../../../@types/global";
-import Repeat from "../../../function/Repeat";
+import styled from "@emotion/styled";
+import { FC, useRef } from "react";
+import { position2D } from "../../@types/global";
+import Repeat from "../../function/Repeat";
 import ContentElement from "./ContentElement";
+import { data } from "./dataUrl";
 
-const ContentsCanvas = (): JSX.Element => {
-    let conetntDistribution:position2D[] = []
+interface Props{
+    canvasWidth?: number;
+    canvasHeight?: number;
+}
 
+const ContentsCanvas:FC<Props> = ({ canvasWidth, canvasHeight}): JSX.Element => {
+    
+    let conetntDistribution: position2D[] = []
     const DIAMETER = '10em';
     //em to px ----------------
     const fontSize = getComputedStyle(document.documentElement).fontSize;
     const diameterPx = parseInt(DIAMETER) * parseFloat(fontSize);
     //-------------------------
 
-    const quantity = Math.floor((window.innerWidth * window.innerHeight) / (diameterPx * diameterPx) / 4);
+    const canvasSize = (!canvasWidth || !canvasHeight) ? 
+        window.innerWidth * window.innerHeight
+        : canvasWidth * canvasHeight
+
+    const quantity = Math.floor(canvasSize / (diameterPx * diameterPx) / 4);
     
     const positionHandler = (): position2D => {
 
@@ -45,14 +57,18 @@ const ContentsCanvas = (): JSX.Element => {
         conetntDistribution.push(position)
         return position
     }
+
     return (
         <>
-          <Repeat numTimes={quantity}>
+            <Repeat numTimes={quantity}>
                 {(index: number) => <div key={index}>
                     <ContentElement
                         diameter = {DIAMETER}
                         position = {positionHandler()}
-                        delay = {Math.random()}
+                        delay={Math.random()}
+                        // imageUrl={data(index).img_url}
+                        imageUrl={data(index).img_url}
+                        index={index}
                     />
                     </div>
                 }
