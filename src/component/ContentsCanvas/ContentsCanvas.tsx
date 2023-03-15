@@ -67,6 +67,7 @@ const ContentsCanvas:FC<Props> = ({ canvasWidth, canvasHeight}): JSX.Element => 
                         position = {positionHandler()}
                         delay={Math.random()}
                         imageUrl={data(index)}
+                        index={index}
                     />
                     </div>
                 }
