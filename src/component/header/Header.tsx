@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,7 +14,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useAuth } from "../../hooks/useAuth";
 
-const pages = ["Products", "Pricing", "Blog"];
+//const pages = ["newPost", "Mypage"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Header = (): JSX.Element => {
@@ -92,11 +93,12 @@ const Header = (): JSX.Element => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key="newPost" onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">newPost</Typography>
                 </MenuItem>
-              ))}
+                <MenuItem key="Mypage" onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Mypage</Typography>
+                </MenuItem>
             </Menu>
           </Box>
           {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
@@ -119,15 +121,24 @@ const Header = (): JSX.Element => {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            
               <Button
-                key={page}
                 onClick={handleCloseNavMenu}
+                component={Link}
+                to="/post"
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                newPost
               </Button>
-            ))}
+              <Button
+                onClick={handleCloseNavMenu}
+                component={Link}
+                to="/mypage"
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Mypage
+              </Button>
+            
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
