@@ -17,6 +17,7 @@ import tree3 from "../../images/tree3.png"
 import tree4 from "../../images/tree4.png"
 import tree5 from "../../images/tree5.png"
 import styled from "@emotion/styled";
+import { data } from "../../component/ContentsCanvas/dataUrl"
 
 
 const Content = (): JSX.Element => {
@@ -36,19 +37,20 @@ const Content = (): JSX.Element => {
   }
   console.log(location, index)
 
+  const {contentId} = useParams()
+
   let testUser: Post = {
-    post_id: 11,
-    img_url: data(index),
-    // img_url: "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG9dUxBZzDlI4sMQm3qrArYJAVN0KNV4ozNB_n8wwajJQkQ23GJiahCFg1WybqJ_vWY4RSWHm22bmRghKDLettLMsAcPkkKOmJQ5M4O55z8cBSrOIb74hC735APTQwch577nIGXvL5Xb3kBd306ZtJN8IdPg849LO5pfMhRBhNffSKcXX9ctHvjSbSRPnK9YZ26FGAa5hB3xlBz5e7alwoJjijGWsGGmrIz3ODGOMdnS6MbYSBASdUwqgAi6EtoXIYQ==/gahag-0052682376.jpg",
-    title: "パンダさん",
-    description: "パンダさんかわいいなあ",
-    uid: 1,
+    post_id: data(Number(contentId)).post_id,
+    img_url: data(Number(contentId)).img_url,
+    title: data(Number(contentId)).title,
+    description: data(Number(contentId)).description,
+    uid: data(Number(contentId)).uid,
     // user: User,
-    alt: "",
-    posted_at: 1567566215, //unix time
-    modified_at: 2, //unix time
-    happiness_rate: 97.1,
-    deleted: true
+    alt: data(Number(contentId)).alt,
+    posted_at: data(Number(contentId)).posted_at, //unix time
+    modified_at: data(Number(contentId)).modified_at, //unix time
+    happiness_rate: data(Number(contentId)).happiness_rate,
+    deleted: data(Number(contentId)).deleted,
   }
 
   let dateTime = new Date(testUser.posted_at===null?0:testUser.posted_at * 1000);
@@ -208,8 +210,8 @@ const BackGroundImage = styled.img`
 `
 
 const BackGroundMat = styled.div`
-  background: linear-gradient(0deg, rgb(132,255,255),rgb(65,169,236));
-  // background: linear-gradient(0deg, rgb(255,201,111), rgb(255,70,0));
+  // background: linear-gradient(0deg, rgb(132,255,255),rgb(65,169,236));
+  background: linear-gradient(0deg, rgb(255,201,111), rgb(255,70,0));
   // background: linear-gradient(0deg, rgb(74,148,218), rgb(108,73,210));
   width: 100vw;
   height: 100vh;

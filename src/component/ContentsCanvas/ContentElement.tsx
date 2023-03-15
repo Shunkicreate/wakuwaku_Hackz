@@ -8,14 +8,14 @@ interface Props {
     diameter: string;
     position: position2D;
     delay: number;
-    imageUrl: string;
+    imageUrl:string;
     index: number
 }
 
-const ContentElement: FC<Props> = ({ diameter, position, delay, imageUrl, index }): JSX.Element => {
-
+const ContentsElement: FC<Props> = ({ diameter, position, delay,imageUrl,index }): JSX.Element => {
+    
     return (
-        <Link to={`content/${JSON.stringify(position)}&index=${index}`}>
+        <Link to={`content/${index}`}>
             <Content
                 diameter={diameter}
                 position={position}
