@@ -12,7 +12,7 @@ interface Props {
     index: number
 }
 
-const ContentsElement: FC<Props> = ({ diameter, position, delay,imageUrl,index }): JSX.Element => {
+const ContentElement: FC<Props> = ({ diameter, position, delay,imageUrl,index }): JSX.Element => {
     
     return (
         <Link to={`content/${index}`}>

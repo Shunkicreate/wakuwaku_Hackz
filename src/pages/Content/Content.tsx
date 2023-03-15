@@ -17,7 +17,6 @@ import tree3 from "../../images/tree3.png"
 import tree4 from "../../images/tree4.png"
 import tree5 from "../../images/tree5.png"
 import styled from "@emotion/styled";
-import { data } from "../../component/ContentsCanvas/dataUrl"
 
 
 const Content = (): JSX.Element => {
