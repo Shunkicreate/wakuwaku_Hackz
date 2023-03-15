@@ -60,14 +60,14 @@ const ContentsCanvas:FC<Props> = ({ canvasWidth, canvasHeight}): JSX.Element => 
 
     return (
         <>
-          <Repeat numTimes={quantity}>
+            <Repeat numTimes={quantity}>
                 {(index: number) => <div key={index}>
                     <ContentElement
                         diameter = {DIAMETER}
                         position = {positionHandler()}
                         delay={Math.random()}
                         // imageUrl={data(index).img_url}
-                        imageUrl={data(index)}
+                        imageUrl={data(index).img_url}
                         index={index}
                     />
                     </div>

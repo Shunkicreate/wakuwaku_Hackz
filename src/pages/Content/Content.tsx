@@ -30,17 +30,17 @@ const Content = (): JSX.Element => {
   const {contentId} = useParams()
 
   let testUser: Post = {
-    post_id: 11,
-    img_url: data(Number(contentId)),
-    title: "パンダさん",
-    description: "パンダさんかわいいなあ",
-    uid: 1,
+    post_id: data(Number(contentId)).post_id,
+    img_url: data(Number(contentId)).img_url,
+    title: data(Number(contentId)).title,
+    description: data(Number(contentId)).description,
+    uid: data(Number(contentId)).uid,
     // user: User,
-    alt: "",
-    posted_at: 1567566215, //unix time
-    modified_at: 2, //unix time
-    happiness_rate: 97.1,
-    deleted: true
+    alt: data(Number(contentId)).alt,
+    posted_at: data(Number(contentId)).posted_at, //unix time
+    modified_at: data(Number(contentId)).modified_at, //unix time
+    happiness_rate: data(Number(contentId)).happiness_rate,
+    deleted: data(Number(contentId)).deleted,
   }
 
   let dateTime = new Date(testUser.posted_at===null?0:testUser.posted_at * 1000);
