@@ -7,9 +7,15 @@ import LoginInfoAtom from "../../globalState/atoms/LoginInfo";
 import { useRecoilValue } from "recoil";
 import { clientPost } from '../../@types/global';
 import Header from '../../component/header/Header';
-import styled from '@emotion/styled';
+import tree1 from "../../images/tree1.png"
+import tree2 from "../../images/tree2.png"
+import tree3 from "../../images/tree3.png"
+import tree4 from "../../images/tree4.png"
+import tree5 from "../../images/tree5.png"
+import styled from "@emotion/styled";
 
 const PostContent = (): JSX.Element => {
+  const [tree, setTree] = useState<string>(tree4);
   const [check, setCheck] = useState<boolean>(true);
   const [title, setTitle] = useState<string>('');
   const [comment, setComment] = useState<string>('');
@@ -127,104 +133,107 @@ const onClickAddScreen = async () => {
     .catch(error => console.log('error', error));
 }
   return (
-    <div style={{
-      height: "100%",
-      display: "grid",
-      gridTemplateColumns: "10vw 35vw 45vw 10vw",
-      gridTemplateRows: "10vh 8vh 5vh 70vh 7vh",
-      backgroundColor: "rgb(150,235,235)"
-    }}>
-      <HeaderOuter><Header></Header></HeaderOuter>
+    <NewCanvasPage>
       <div style={{
-        gridColumn: "1/5",
+        height: "100%",
+        display: "grid",
+        gridTemplateColumns: "10vw 35vw 45vw 10vw",
+        gridTemplateRows: "10vh 8vh 5vh 70vh 7vh",
       }}>
-        <Header></Header>
-      </div>
-      <div style={{
-        gridColumn: "2/4",
-        gridRow: "3/5",
-        margin: "-2vh",
-        marginLeft: "-4vh",
-        marginRight: "-4vh",
-        backgroundColor: "rgba(255,255,255,0.8)"
-      }}>
-
-      </div>
-      <div style={{
-        gridColumn: "2/4",
-        gridRow: "3/4",
-        marginTop: "auto",
-        textAlign: "left",
-        fontSize: "30px",
-        color: "#999999",
-        borderColor: "black",
-        borderBottom: "3px solid"
-      }}>
-        新規投稿
-      </div>
-      <div
-        style={{
-          gridColumn: "2/3",
-          gridRow: "4/5",
-          marginTop: "7vh"
+        <HeaderOuter><Header></Header></HeaderOuter>
+        <div style={{
+          gridColumn: "1/5",
         }}>
-        {/* <SelectPhoto></SelectPhoto> */}
-        <FaceDetector happy={happy} setHappy={setHappy} color={color} setColor={setColor}></FaceDetector>
-      </div>
-      <div style={{ gridColumn: "2/4", gridRow: "4/5", margin: "0 auto", paddingTop: "20vh" }}>
-        <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row">
-          <CircularProgress size={100} color="inherit" style={{ display: happy === "loading" ? "" : "none" }}></CircularProgress>
-        </Stack>
-      </div>
-      <div style={{ gridColumn: "3/4", gridRow: "3/5", textAlign: "center" }}>
-        <div style={{ margin: "2%" }}>
-          {/* 幸せ度表示 */}
-          <div style={{ fontSize: "5vh", margin: "3vh", marginBottom: "3vh", marginTop: "13vh", gridColumn: "2/3", gridRow: "3/4", color: color }}>
-            {happy}
-          </div>
-          <ThemeProvider theme={theme1}>
+          <Header></Header>
+        </div>
+        <div style={{
+          gridColumn: "2/4",
+          gridRow: "3/5",
+          margin: "-2vh",
+          marginLeft: "-4vh",
+          marginRight: "-4vh",
+          backgroundColor: "rgba(255,255,255,0.8)"
+        }}>
 
-            {/* titleテキストボックス */}
-            <div>
-              <TextField
-                id="outlined-basic"
-                label="title"
-                style={{
-                  width: "40vw",
-                  marginBottom: "4%"
-                }}
-                onChange={(event) => {
-                  setTitle(event.target.value);
-                  checkFilled(event.target.value);
-                }}
-              />
-            </div>
-            {/* commentテキストボックス */}
-            <div>
-              <TextField
-                size="small"
-                id="outlined-basic"
-                label="comment"
-                multiline
-                minRows="6"
-                style={{
-                  width: "40vw",
-                }}
-                onChange={(event) => {
-                  setComment(event.target.value);
-                }}
-              />
-            </div>
-          </ThemeProvider>
         </div>
-        {/* 投稿ボタン */}
-        <div style={{ textAlign: "right", width: "40vw" }}>
-          <ThemeProvider theme={theme2}>
-            <Button size={"large"} disabled={check} style={{ flexGrow: "1" }} onClick={onClickAddScreen} >post</Button>
-          </ThemeProvider>
+        <div style={{
+          gridColumn: "2/4",
+          gridRow: "3/4",
+          marginTop: "auto",
+          textAlign: "left",
+          fontSize: "30px",
+          color: "#999999",
+          borderColor: "black",
+          borderBottom: "3px solid"
+        }}>
+          新規投稿
         </div>
+        <div
+          style={{
+            gridColumn: "2/3",
+            gridRow: "4/5",
+            marginTop: "7vh"
+          }}>
+          {/* <SelectPhoto></SelectPhoto> */}
+          <FaceDetector happy={happy} setHappy={setHappy} color={color} setColor={setColor}></FaceDetector>
+        </div>
+        <div style={{ gridColumn: "2/4", gridRow: "4/5", margin: "0 auto", paddingTop: "20vh" }}>
+          <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row">
+            <CircularProgress size={100} color="inherit" style={{ display: happy === "loading" ? "" : "none" }}></CircularProgress>
+          </Stack>
+        </div>
+        <div style={{ gridColumn: "3/4", gridRow: "3/5", textAlign: "center" }}>
+          <div style={{ margin: "2%" }}>
+            {/* 幸せ度表示 */}
+            <div style={{ fontSize: "5vh", margin: "3vh", marginBottom: "3vh", marginTop: "13vh", gridColumn: "2/3", gridRow: "3/4", color: color }}>
+              {happy}
+            </div>
+            <ThemeProvider theme={theme1}>
+
+              {/* titleテキストボックス */}
+              <div>
+                <TextField
+                  id="outlined-basic"
+                  label="title"
+                  style={{
+                    width: "40vw",
+                    marginBottom: "4%"
+                  }}
+                  onChange={(event) => {
+                    setTitle(event.target.value);
+                    checkFilled(event.target.value);
+                  }}
+                />
+              </div>
+              {/* commentテキストボックス */}
+              <div>
+                <TextField
+                  size="small"
+                  id="outlined-basic"
+                  label="comment"
+                  multiline
+                  minRows="6"
+                  style={{
+                    width: "40vw",
+                  }}
+                  onChange={(event) => {
+                    setComment(event.target.value);
+                  }}
+                />
+              </div>
+            </ThemeProvider>
+          </div>
+          {/* 投稿ボタン */}
+          <div style={{ textAlign: "right", width: "40vw" }}>
+            <ThemeProvider theme={theme2}>
+              <Button size={"large"} disabled={check} style={{ flexGrow: "1" }} onClick={onClickAddScreen} >post</Button>
+            </ThemeProvider>
+          </div>
+        </div>
+        <BackGroundImage src={tree} />
+        <BackGroundMat />
       </div>
-    </div>
+    </NewCanvasPage>
   );
 };
 
@@ -233,5 +242,26 @@ const HeaderOuter = styled.div`
   width: ${window.innerWidth}px;
   top: 0;
 `;
+
+const NewCanvasPage = styled.div`
+position: fixed;
+`
+
+const BackGroundImage = styled.img`
+  position: absolute;
+  z-index: -3;
+  width: ${window.innerWidth}px;
+`
+
+const BackGroundMat = styled.div`
+  background: linear-gradient(0deg, rgb(132,255,255),rgb(65,169,236));
+  // background: linear-gradient(0deg, rgb(255,201,111), rgb(255,70,0));
+  // background: linear-gradient(0deg, rgb(74,148,218), rgb(108,73,210));
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: -4;
+`
+
 
 export default PostContent;
