@@ -92,7 +92,7 @@ const Content = (): JSX.Element => {
         style={{
           gridColumn: "2/3",
           gridRow: "4/5",
-          marginTop: "7vh",
+          marginTop: "1vh",
         }}>
         <img
           src={testUser.img_url}
