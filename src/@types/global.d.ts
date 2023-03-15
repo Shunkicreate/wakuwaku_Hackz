@@ -22,6 +22,20 @@ export type LoginInfoAtomType = {
     uid: string | null
 }
 
+export interface clientPost {
+    title: string | null,
+    description: string | null,
+    uid: string,
+    alt: string | null,
+    happiness_rate: number,
+}
+  
+export interface clientUser {
+    uid: string,
+    user_name: string,
+    profile_message: string | null
+}
+
 export interface Post {
     post_id: number,
     img_url: string,

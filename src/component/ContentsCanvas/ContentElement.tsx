@@ -2,32 +2,33 @@ import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { position2D } from "../../../@types/global";
+import { position2D } from "../../@types/global";
 
 interface Props{
     diameter: string;
     position: position2D;
     delay: number;
+    imageUrl:string
 }
 
-const ContentsCanvas: FC<Props> = ({ diameter, position, delay }): JSX.Element => {
+const ContentsCanvas: FC<Props> = ({ diameter, position, delay,imageUrl }): JSX.Element => {
     
     return (
         <Link to={`content/${JSON.stringify(position)}`}>
-                <Content
-                    diameter = {diameter}
-                    position={position}
-                    delay = {delay}
-                    >
-                    <ContentInner>
-                    <ImageBox src={"https://ca.slack-edge.com/T02AEC8RD-U01MWGUL5SS-02b51b855f69-512"}
-                    // <ImageBox src={"https://www.studio-alice.co.jp/shortcut/halfbd_s/column/img/detail40/img01.jpg"}
+            <Content
+                diameter = {diameter}
+                position={position}
+                delay = {delay}
+            >
+                <ContentInner>
+                    <ImageBox
+                        src={imageUrl}
                         diameter = {diameter}
                     />
-            </ContentInner>
-                </Content>
+                </ContentInner>
+            </Content>
         </Link>
-  );
+    );
 }
 
 const fadeIn = keyframes`
@@ -37,7 +38,7 @@ const fadeIn = keyframes`
   50% {
     transform: translateY(-20px);
   }
-`;
+`
 
 const Content = styled.div<{
     diameter: string,
@@ -56,12 +57,12 @@ const Content = styled.div<{
     `
 
 const ContentInner = styled.div`
-overflow: hidden;
-border-radius: 50%;
-&:hover{
-    transform:scale(1.1);
-}
-
+    overflow: hidden;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 10px black);
+    &:hover{
+        transform:scale(1.1);
+    }
 `
 
 const ImageBox = styled.img<{
@@ -70,10 +71,6 @@ const ImageBox = styled.img<{
     height:${({ diameter }) => diameter };
     width:${({ diameter }) => diameter };
     object-fit: cover;
-`
-
-const StyleButton = styled.button`
-    
 `
 
 export default ContentsCanvas;
