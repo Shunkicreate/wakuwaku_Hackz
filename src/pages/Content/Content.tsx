@@ -15,6 +15,7 @@ import tree3 from "../../images/tree3.png"
 import tree4 from "../../images/tree4.png"
 import tree5 from "../../images/tree5.png"
 import styled from "@emotion/styled";
+import { data } from "../../component/ContentsCanvas/dataUrl"
 
 
 const Content = (): JSX.Element => {
@@ -26,9 +27,11 @@ const Content = (): JSX.Element => {
 
   const [happy, setHappy] = useState<string>("----");
 
+  const {contentId} = useParams()
+
   let testUser: Post = {
     post_id: 11,
-    img_url: "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG9dUxBZzDlI4sMQm3qrArYJAVN0KNV4ozNB_n8wwajJQkQ23GJiahCFg1WybqJ_vWY4RSWHm22bmRghKDLettLMsAcPkkKOmJQ5M4O55z8cBSrOIb74hC735APTQwch577nIGXvL5Xb3kBd306ZtJN8IdPg849LO5pfMhRBhNffSKcXX9ctHvjSbSRPnK9YZ26FGAa5hB3xlBz5e7alwoJjijGWsGGmrIz3ODGOMdnS6MbYSBASdUwqgAi6EtoXIYQ==/gahag-0052682376.jpg",
+    img_url: data(Number(contentId)),
     title: "パンダさん",
     description: "パンダさんかわいいなあ",
     uid: 1,
