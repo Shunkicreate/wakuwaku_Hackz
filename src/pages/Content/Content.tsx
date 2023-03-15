@@ -1,10 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import Header from "../../component/header/Header";
 import { Button, CircularProgress, createTheme, IconButton, Stack, TextField } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import react, { useRef, useState, useEffect } from "react"
 import FaceDetector from "../../function/Faceexpression"
+import { data } from "../../component/ContentsCanvas/dataUrl";
+
 import { Post } from "../../@types/global";
 import heart0 from "../../images/heart0.png";
 import heart1 from "../../images/heart1.png";
@@ -26,6 +28,14 @@ const Content = (): JSX.Element => {
   const [heart, setHeart] = useState<boolean>(false);
 
   const [happy, setHappy] = useState<string>("----");
+  const location = useLocation()
+  const myRE =  /index=.*/;
+  const path = myRE.exec(location.pathname)
+  let index = 0
+  if(path){
+    index = Number(path[0].replace("index=", ""))
+  }
+  console.log(location, index)
 
   const {contentId} = useParams()
 
