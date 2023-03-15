@@ -197,8 +197,8 @@ const BackGroundImage = styled.img`
 `
 
 const BackGroundMat = styled.div`
-  background: linear-gradient(0deg, rgb(132,255,255),rgb(65,169,236));
-  // background: linear-gradient(0deg, rgb(255,201,111), rgb(255,70,0));
+  // background: linear-gradient(0deg, rgb(132,255,255),rgb(65,169,236));
+  background: linear-gradient(0deg, rgb(255,201,111), rgb(255,70,0));
   // background: linear-gradient(0deg, rgb(74,148,218), rgb(108,73,210));
   width: 100vw;
   height: 100vh;
