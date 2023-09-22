@@ -9,7 +9,7 @@ import tree5 from "../../images/tree5.png"
 import { useState } from "react";
 
 const Home = (): JSX.Element => {
-  const [tree, setTree] = useState<string>(tree4);
+  const [tree, setTree] = useState<string>(tree1);
   
   return (
     <NewCanvasPage>

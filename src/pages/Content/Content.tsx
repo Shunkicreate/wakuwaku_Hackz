@@ -19,7 +19,7 @@ import { data } from "../../component/ContentsCanvas/dataUrl"
 
 
 const Content = (): JSX.Element => {
-  const [tree, setTree] = useState<string>(tree4);
+  const [tree, setTree] = useState<string>(tree3);
   const [check, setCheck] = useState<boolean>(true);
   const [title, setTitle] = useState<string>('');
   const [comment, setComment] = useState<string>('');
@@ -51,8 +51,13 @@ const Content = (): JSX.Element => {
   const theme1 = createTheme({
     palette: {
       primary: {
-        main: "#95a5a6"
+        main: "#95a5a6",
+        light: "white",
       },
+      // neutral: {
+      //   main: "#999000",
+      //   contrastText: "#fff000",
+      // },
     },
   });
   const theme2 = createTheme({

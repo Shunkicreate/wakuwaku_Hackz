@@ -15,7 +15,7 @@ import tree5 from "../../images/tree5.png"
 import styled from "@emotion/styled";
 
 const PostContent = (): JSX.Element => {
-  const [tree, setTree] = useState<string>(tree4);
+  const [tree, setTree] = useState<string>(tree5);
   const [check, setCheck] = useState<boolean>(true);
   const [title, setTitle] = useState<string>('');
   const [comment, setComment] = useState<string>('');
