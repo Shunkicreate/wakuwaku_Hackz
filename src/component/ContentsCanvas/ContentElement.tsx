@@ -4,7 +4,7 @@ import { FC } from "react";
 import { Link } from "react-router-dom";
 import { position2D } from "../../@types/global";
 
-interface Props{
+interface Props {
     diameter: string;
     position: position2D;
     delay: number;
@@ -12,19 +12,19 @@ interface Props{
     index: number
 }
 
-const ContentsCanvas: FC<Props> = ({ diameter, position, delay,imageUrl,index }): JSX.Element => {
+const ContentsElement: FC<Props> = ({ diameter, position, delay,imageUrl,index }): JSX.Element => {
     
     return (
         <Link to={`content/${index}`}>
             <Content
-                diameter = {diameter}
+                diameter={diameter}
                 position={position}
-                delay = {delay}
+                delay={delay}
             >
                 <ContentInner>
                     <ImageBox
                         src={imageUrl}
-                        diameter = {diameter}
+                        diameter={diameter}
                     />
                 </ContentInner>
             </Content>
@@ -44,17 +44,17 @@ const fadeIn = keyframes`
 const Content = styled.div<{
     diameter: string,
     position: position2D,
-    delay:number
+    delay: number
 }>`
-    width:${({diameter}) => diameter };
-    height:${({diameter}) => diameter };
-    top:${({position}) => position.y }px;
-    left:${({position}) => position.x }px;
+    width:${({ diameter }) => diameter};
+    height:${({ diameter }) => diameter};
+    top:${({ position }) => position.y}px;
+    left:${({ position }) => position.x}px;
     background-color: transparent;
     border-radius: 50%;
     position: absolute;
     animation: ${fadeIn} 2.5s infinite;
-    animation-delay: ${({ delay }) => delay }s;
+    animation-delay: ${({ delay }) => delay}s;
     `
 
 const ContentInner = styled.div`
@@ -69,9 +69,9 @@ const ContentInner = styled.div`
 const ImageBox = styled.img<{
     diameter: string,
 }>`
-    height:${({ diameter }) => diameter };
-    width:${({ diameter }) => diameter };
+    height:${({ diameter }) => diameter};
+    width:${({ diameter }) => diameter};
     object-fit: cover;
 `
 
-export default ContentsCanvas;
+export default ContentElement;
